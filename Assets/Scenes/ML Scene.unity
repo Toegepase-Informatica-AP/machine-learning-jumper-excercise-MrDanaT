@@ -3170,8 +3170,6 @@ MonoBehaviour:
   obstaclePrefab: {fileID: 482695761, guid: 96ad112ce4d7c7843b323d134dacd238, type: 3}
   playerPrefab: {fileID: 1213094806092377793, guid: 136d294c1a597464280535044b6747e3,
     type: 3}
-  maxObstacles: 3
-  maxCoins: 3
   maxTime: 5
   minTime: 2
 --- !u!4 &941633096
@@ -3555,8 +3553,6 @@ MonoBehaviour:
   obstaclePrefab: {fileID: 482695761, guid: 96ad112ce4d7c7843b323d134dacd238, type: 3}
   playerPrefab: {fileID: 1213094806092377793, guid: 136d294c1a597464280535044b6747e3,
     type: 3}
-  maxObstacles: 3
-  maxCoins: 3
   maxTime: 5
   minTime: 2
 --- !u!4 &1018829829
@@ -3682,8 +3678,6 @@ MonoBehaviour:
   obstaclePrefab: {fileID: 482695761, guid: 96ad112ce4d7c7843b323d134dacd238, type: 3}
   playerPrefab: {fileID: 1213094806092377793, guid: 136d294c1a597464280535044b6747e3,
     type: 3}
-  maxObstacles: 3
-  maxCoins: 3
   maxTime: 5
   minTime: 2
 --- !u!4 &1072630247
@@ -3809,8 +3803,6 @@ MonoBehaviour:
   obstaclePrefab: {fileID: 482695761, guid: 96ad112ce4d7c7843b323d134dacd238, type: 3}
   playerPrefab: {fileID: 1213094806092377793, guid: 136d294c1a597464280535044b6747e3,
     type: 3}
-  maxObstacles: 3
-  maxCoins: 3
   maxTime: 5
   minTime: 2
 --- !u!4 &1092527655
@@ -5507,8 +5499,6 @@ MonoBehaviour:
   obstaclePrefab: {fileID: 482695761, guid: 96ad112ce4d7c7843b323d134dacd238, type: 3}
   playerPrefab: {fileID: 1213094806092377793, guid: 136d294c1a597464280535044b6747e3,
     type: 3}
-  maxObstacles: 3
-  maxCoins: 3
   maxTime: 5
   minTime: 2
 --- !u!4 &1676208263
@@ -5821,8 +5811,6 @@ MonoBehaviour:
   obstaclePrefab: {fileID: 482695761, guid: 96ad112ce4d7c7843b323d134dacd238, type: 3}
   playerPrefab: {fileID: 1213094806092377793, guid: 136d294c1a597464280535044b6747e3,
     type: 3}
-  maxObstacles: 3
-  maxCoins: 3
   maxTime: 5
   minTime: 2
 --- !u!4 &1793642502
@@ -6465,8 +6453,6 @@ MonoBehaviour:
   obstaclePrefab: {fileID: 482695761, guid: 96ad112ce4d7c7843b323d134dacd238, type: 3}
   playerPrefab: {fileID: 1213094806092377793, guid: 136d294c1a597464280535044b6747e3,
     type: 3}
-  maxObstacles: 3
-  maxCoins: 3
   maxTime: 5
   minTime: 2
 --- !u!4 &1946492610
@@ -6560,8 +6546,6 @@ MonoBehaviour:
   obstaclePrefab: {fileID: 482695761, guid: 96ad112ce4d7c7843b323d134dacd238, type: 3}
   playerPrefab: {fileID: 1213094806092377793, guid: 136d294c1a597464280535044b6747e3,
     type: 3}
-  maxObstacles: 3
-  maxCoins: 3
   maxTime: 5
   minTime: 2
 --- !u!4 &2005200418
@@ -7024,8 +7008,6 @@ MonoBehaviour:
   obstaclePrefab: {fileID: 482695761, guid: 96ad112ce4d7c7843b323d134dacd238, type: 3}
   playerPrefab: {fileID: 1213094806092377793, guid: 136d294c1a597464280535044b6747e3,
     type: 3}
-  maxObstacles: 3
-  maxCoins: 3
   maxTime: 5
   minTime: 2
 --- !u!4 &2090881605
@@ -7103,8 +7085,6 @@ MonoBehaviour:
   obstaclePrefab: {fileID: 482695761, guid: 96ad112ce4d7c7843b323d134dacd238, type: 3}
   playerPrefab: {fileID: 1213094806092377793, guid: 136d294c1a597464280535044b6747e3,
     type: 3}
-  maxObstacles: 3
-  maxCoins: 3
   maxTime: 5
   minTime: 2
 --- !u!1001 &2105827889

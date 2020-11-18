@@ -1,0 +1,49 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1605733809",
+        "python_version": "3.8.2 (tags/v3.8.2:7b3ab59, Feb 25 2020, 23:03:10) [MSC v.1916 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Python38\\Scripts\\mlagents-learn Player-01.yml --run-id Player-10 --resume",
+        "mlagents_version": "0.21.0",
+        "mlagents_envs_version": "0.21.0",
+        "communication_protocol_version": "1.2.0",
+        "tensorflow_version": "2.3.1",
+        "numpy_version": "1.19.2",
+        "end_time_seconds": "1605733835"
+    },
+    "total": 25.1660329,
+    "count": 1,
+    "self": 0.30236690000000266,
+    "children": {
+        "run_training.setup": {
+            "total": 0.021105799999999952,
+            "count": 1,
+            "self": 0.021105799999999952
+        },
+        "TrainerController.start_learning": {
+            "total": 24.842560199999998,
+            "count": 1,
+            "self": 0.0001565999999968426,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 24.4772687,
+                    "count": 1,
+                    "self": 24.4772687
+                },
+                "TrainerController._save_models": {
+                    "total": 0.36513490000000104,
+                    "count": 1,
+                    "self": 1.9600000001673834e-05,
+                    "children": {
+                        "RLTrainer._checkpoint": {
+                            "total": 0.36511529999999937,
+                            "count": 1,
+                            "self": 0.36511529999999937
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
