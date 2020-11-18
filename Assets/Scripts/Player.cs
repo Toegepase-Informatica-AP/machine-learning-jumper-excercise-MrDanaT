@@ -40,7 +40,9 @@ namespace Assets.Scripts
                 RequestDecision();
             }
 
-            if(transform.position.y <= 1)
+            Transform floor = environment.transform.Find("Floor");
+
+            if (transform.position.y - floor.position.y <= 1)
             {
                 AddReward(0.001f);
             }
