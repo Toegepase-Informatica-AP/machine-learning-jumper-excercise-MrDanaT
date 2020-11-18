@@ -1,0 +1,47 @@
+{
+    "Player": {
+        "checkpoints": [
+            {
+                "steps": 299967,
+                "file_path": "results\\Player-07\\Player\\Player-299967.nn",
+                "reward": null,
+                "creation_time": 1605714820.1698549
+            },
+            {
+                "steps": 349999,
+                "file_path": "results\\Player-07\\Player\\Player-349999.nn",
+                "reward": null,
+                "creation_time": 1605715033.3468125
+            },
+            {
+                "steps": 399988,
+                "file_path": "results\\Player-07\\Player\\Player-399988.nn",
+                "reward": null,
+                "creation_time": 1605715257.1108725
+            },
+            {
+                "steps": 449972,
+                "file_path": "results\\Player-07\\Player\\Player-449972.nn",
+                "reward": null,
+                "creation_time": 1605715479.5143955
+            },
+            {
+                "steps": 459636,
+                "file_path": "results\\Player-07\\Player\\Player-459636.nn",
+                "reward": null,
+                "creation_time": 1605715527.8740828
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 459636,
+            "file_path": "results\\Player-07\\Player.nn",
+            "reward": null,
+            "creation_time": 1605715527.8740828
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.1.0",
+        "mlagents_version": "0.21.0",
+        "tensorflow_version": "2.3.1"
+    }
+}

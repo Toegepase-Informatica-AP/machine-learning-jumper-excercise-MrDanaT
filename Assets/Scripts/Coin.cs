@@ -52,7 +52,7 @@ namespace Assets.Scripts
                 Player player = environment.GetComponentInChildren<Player>();
                 if (player.gameObject != null)
                 {
-                    player.AddReward(-0.4f);
+                    player.AddReward(-0.05f);
                 }
             }
         }

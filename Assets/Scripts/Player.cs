@@ -29,7 +29,7 @@ namespace Assets.Scripts
             {
                 body.AddForce(new Vector3(0, jumpForce, 0), ForceMode.VelocityChange);
                 jumpIsReady = false;
-                AddReward(-0.2f);
+                AddReward(-0.15f);
             }
         }
 
@@ -92,7 +92,7 @@ namespace Assets.Scripts
             if (other.gameObject.CompareTag("Coin"))
             {
                 Destroy(other.gameObject);
-                AddReward(0.8f);
+                AddReward(0.6f);
             }
         }
     }

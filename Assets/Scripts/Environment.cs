@@ -84,7 +84,7 @@ public class Environment : MonoBehaviour
     private void SpawnCoin()
     {
         ResetTimer();
-        Coin newCoin = Instantiate(coinPrefab, new Vector3(spawnLineLocation.x, floor.transform.position.y + 3f, spawnLineLocation.z), spawnLineRotation);
+        Coin newCoin = Instantiate(coinPrefab, new Vector3(spawnLineLocation.x, floor.transform.position.y + 0.5f, spawnLineLocation.z), spawnLineRotation);
         newCoin.transform.SetParent(coins.transform);
     }
 
