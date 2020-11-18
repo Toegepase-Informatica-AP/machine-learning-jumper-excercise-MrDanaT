@@ -623,8 +623,6 @@ MonoBehaviour:
   obstaclePrefab: {fileID: 482695761, guid: 96ad112ce4d7c7843b323d134dacd238, type: 3}
   playerPrefab: {fileID: 1213094806092377793, guid: 136d294c1a597464280535044b6747e3,
     type: 3}
-  maxObstacles: 3
-  maxCoins: 3
   maxTime: 5
   minTime: 2
 --- !u!1001 &856909677682632603
@@ -900,6 +898,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5973326543908076892, guid: 136d294c1a597464280535044b6747e3,
+        type: 3}
+      propertyPath: m_Model
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 136d294c1a597464280535044b6747e3, type: 3}
