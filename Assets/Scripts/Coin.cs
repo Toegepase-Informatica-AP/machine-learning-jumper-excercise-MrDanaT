@@ -4,7 +4,7 @@ namespace Assets.Scripts
 {
     public class Coin : MonoBehaviour
     {
-        public float givenSpeed = 3f;
+        public float givenSpeed = 5f;
         public bool constantGivenSpeed = true;
         public float minSpeed = 1f;
         public float maxSpeed = 10f;
