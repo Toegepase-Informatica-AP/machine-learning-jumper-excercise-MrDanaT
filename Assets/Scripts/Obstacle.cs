@@ -49,13 +49,6 @@ namespace Assets.Scripts
             if (isDeadLineCollission)
             {
                 Destroy(gameObject);
-                /*
-                Player player = environment.GetComponentInChildren<Player>();
-                if (player.gameObject != null)
-                {
-                    player.AddReward(1f);
-                }
-                */
             }
         }
     }

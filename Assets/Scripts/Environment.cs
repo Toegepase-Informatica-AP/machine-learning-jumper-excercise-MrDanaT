@@ -92,7 +92,7 @@ public class Environment : MonoBehaviour
     {
         //Counts up
         currentTimer += Time.deltaTime;
-        int randomValue = Random.Range(1, 3);
+        int randomValue = Random.Range(1, 4);
 
         //Check if its the right time to spawn the object
         if (CanSpawn())
