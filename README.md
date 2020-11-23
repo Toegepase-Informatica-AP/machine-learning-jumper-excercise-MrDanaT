@@ -185,4 +185,11 @@ Hierdoor worden er nog enkele optimalisaties uitgevoerd op onze Unity omgeving o
 
 ## Unity optimalisaties
 
-fsdsfds 
+Aangezien dit project zich focust op ML Agents die het spel leren spelen, is er geen nood aan enkele configuraties van ons Unity project en "mooie" textures die onze performantie op negatieve wijze kunnen beïnvloeden. Hiervoor doen wij het volgende:
+
+- In de Game-window staat de **aspect ratio** fixed op `4:3` met `Low Resolution Aspect Ratios` ingeschakeld.
+- De **lighting settings** aangepast zodat deze niet gebruikt maakt van de `Skybox`, maar wel van een `fixed kleur`, nl. `wit` met **Ambient Mode** op `Baked`.
+- Het effectief `baken` van uw lightings zodat deze niet @Runtime worden gecalculeerd.
+- Tijdens het **runnen** van de ML Agents de Game-window en Scene-window effectief **afsluiten** zodat er geen onnodig CPU- en GPU-verbruik is.
+
+![Lighting Settings](https://i.imgur.com/GZP0N7y.png)
