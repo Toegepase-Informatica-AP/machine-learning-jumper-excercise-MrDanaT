@@ -8,7 +8,7 @@ In dit Unity project leert een AI om over obstakels te springen door gebruik te 
 
 ![Spelverloop](https://i.imgur.com/t4SJ6dv.png)
 
-De speler staat op het veld en ziet verschillende objecten naar zich toe komen. Wanneer de speler een obstakel tegenkomt, kan hij er over springen om punten te verdienen. Wanneer speler een munt tegenkomt, kan hij hier tegenaan botsen om extra punten bij te verdienen.
+De speler staat op het veld en ziet verschillende objecten naar zich toe komen. Wanneer de speler een obstakel tegenkomt, kan hij er over springen om punten te verdienen. Wanneer de speler een munt tegenkomt, kan hij hier tegenaan botsen om extra punten bij te verdienen.
 
 ## Observaties, acties en beloningen
 
@@ -23,31 +23,52 @@ Zo zal *Player* telkens gestraft of beloond worden per actie die hij onderneemt.
 | Stilstaan per frame   | +0.001            |
 | Aanraken van een munt | +0.6              |
 
+## Tags
+
+
 ## Objecten
 
 Vooraleer we aan de effectieve ML Agents training kunnen starten, zullen er eerst objecten aangemaakt moeten worden die als basis van dit project zullen dienen, beginnende bij *environment*.
 
 ### *Environment*
 
-![Environment](https://i.imgur.com/rfNqeFy.png)
+![Environment](https://i.imgur.com/UVoXEGD.png)
 
-Het *environment* is een parent object voor alle objecten in een omgeving. Deze voert ook gedrag uit om de spelomgeving te laten verlopen, zoals het spawnen van objecten en *Coins* en verzekeren dat er een *Player* object bestaat. Door meerdere *environments* in een scène te zetten, kan men meerdere spelomgevingen tegelijk laten draaien. Logischerwijs zal dit ervoor zorgen dat de leercurve van de ML Agents sneller zal verlopen.
+Het *Environment* is een parent object voor alle objecten in een omgeving. Deze voert ook gedrag uit om de spelomgeving te laten verlopen, zoals het spawnen van objecten en *Coins* en verzekeren dat er een *Player* object bestaat. Door meerdere *Environments* in een scène te zetten, kan men meerdere spelomgevingen tegelijk laten draaien. Logischerwijs zal dit ervoor zorgen dat de leercurve van de ML Agents sneller zal verlopen.
+
+Bij het *Environment* is het ook belangrijk om mee te geven welke prefabs het gebruikt om objecten te genereren, in dit geval de *Coin*, *Obstacle* en *Player* prefabs (er word een *Player* object gegenereerd moest deze ooit niet aanwezig zijn).
 
 ### *ScoreBoard*
 
-![ScoreBoard](https://i.imgur.com/BLF7NF9.png)
+![ScoreBoard](https://i.imgur.com/DRcItwm.png)
 
 *ScoreBoard* is een text display dat de huidige rewardscore laat zien.  
 
 ### *Player*
 
-![*Player prefab*](https://i.imgur.com/OJApfgI.png)
+![*Player prefab*](https://i.imgur.com/x7YRyic.png)
 
-Het *Player* object wordt voorgesteld door een simpele bean met een gezichtje (twee ogen en een mond). Dit object staat stil op het veld en heeft enkel de "jump" actie. Deze actie kan *Player* uit vrije wil nemen gebaseerd op machine learning.
+Het *Player* object wordt voorgesteld door een simpele bean met een gezichtje (twee ogen en een mond). Dit object staat stil op het veld en heeft enkel de "jump" actie. Deze actie kan *Player* uit vrije wil nemen gebaseerd op machine learning. Omdat dit de enige beweging is die het object moet ondergaan, zijn de *X-* en *Y-position* waarden vastgezet op 0 in de Rigidbody, alsook de *X-*, *Y-* en *Z-rotation* waarden.
 
-Het heeft een collider die gebruikt wordt in interacties met *Floor*, *Munt*, *Coin* en *Obstacle*. Ook heeft het een "*LeftEye*" en "*RightEye*" child sphere-object die de ogen voorstellen en met Ray Perception Sensors ervoor zorgen dat het de *Coin* en *Obstacle* objecten kan zien.
+Het heeft een collider die gebruikt wordt in interacties met *Floor*, *Coin* en *Obstacle*. Ook heeft het een "*LeftEye*" en "*RightEye*" child sphere-object die de ogen voorstellen en met Ray Perception Sensors, respectievelijk LeftEyeDown en RightEyeDown (deze namen moeten uniek zijn), ervoor zorgen dat het de *Coin* en *Obstacle* objecten kan zien. De ogen zijn elks 5° van het midden weggedraaid zodat ze minder overlap hebben.
 
-Door het *Floor* object aan te raken weet de agent dat het opnieuw kan springen. De agent krijgt rewardscores wanneer *Player* een *Coin* aanraakt en verliest rewardscores als *Player* een *Obstacle* aanraakt
+Door het *Floor* object aan te raken weet de agent dat het opnieuw kan springen. De agent krijgt rewardscores wanneer *Player* een *Coin* aanraakt en verliest rewardscores als *Player* een *Obstacle* aanraakt.
+
+Het is hier belangrijk dat de Behavior Name in Behavior Parameters "Player" is, anders word Player.yml niet uitgevoerd.
+
+De Ray Perception Sensors zijn als volgt ingesteld:
+| Variabele             | Waarde         |
+| --------------------- | -------------- |
+| Detectable Tags       | Coin, Obstacle |
+| Rays Per Direction    | 1              |
+| Max Ray Degrees       | 5              |
+| Sphere Cast Radius    | 3.5            |
+| Ray Length            | 75             |
+| Ray Layer Mask        | Mixed          |
+| Stacked Raycasts      | 1              |
+| Start Vertical Offset | 0              |
+| End Vertical Offset   | -10            |
+| Use Child Sensors     | True           |
 
 ### *Floor*
 
@@ -65,7 +86,7 @@ Het *SpawnLine* object is een lijn die het einde van de vloer markeert en gebrui
 
 ![Deadline prefab](https://i.imgur.com/lBMlZlo.png)
 
-Het *DeadLine* object is een lijn die het einde van de vloer markeert en gebruikt word om objecten te destroyen en daarbij de rewardscore aan te passen.
+Het *DeadLine* object is een lijn die het einde van de vloer markeert en gebruikt word om objecten te destroyen en daarbij de rewardscore aan te passen. De Collider van dit object is een trigger.
 
 ### *Coins*
 
@@ -77,7 +98,7 @@ Een parent object voor de *Coin* objecten, gebruikt door het environment script.
 
 ![Coin Prefab](https://i.imgur.com/f5CiQ5X.png)
 
-Het *Coin* object is een munt die bij *SpawnLine* verschijnt en in een rechte lijn naar de *DeadLine* (en de speler) beweegt. De collider wordt gebruikt in interacties met *Player* en *DeadLine*.
+Het *Coin* object is een munt die bij *SpawnLine* verschijnt en in een rechte lijn naar de *DeadLine* (en de speler) beweegt. De collider wordt gebruikt in interacties met *Player* en *DeadLine*. Deze collider is een trigger.
 
 Als een *Coin* het *Player* object aanraakt krijgt de agent rewardscore.
 
@@ -85,7 +106,7 @@ Als een *Coin* het *Player* object aanraakt krijgt de agent rewardscore.
 
 ![Obstacles](https://i.imgur.com/ZogVTnt.png)
 
-Een Parent object voor het *Obstacle* object, gebruikt door het environment script.
+Een Parent object voor de *Obstacle* objecten, gebruikt door het environment script.
 
 ### *Obstacle*
 
@@ -93,13 +114,16 @@ Een Parent object voor het *Obstacle* object, gebruikt door het environment scri
 
 Het *Obstacle* object is een balk die bij *SpawnLine* verschijnt en in een rechte lijn naar de *DeadLine* beweegt. De collider wordt gebruikt in interacties met *Player* en *Deadline*.
 
-Als een *Obstacle* het *Player* object aanraakt verliest de agent rewardscore.
+Als een *Obstacle* het *Player* object aanraakt verliest de agent rewardscore en wordt het *Obstacle* object vernietigd.
 
 ## Scripts
 
 Het gedrag van deze objecten werkt door gebruik van scripts, deze staan hieronder beschreven.
 
-### Environment
+
+In onze scripts gebruiken maken wij gebruik van de `Transform.find` functionaliteit, aangezien deze zoekt op de tag van objecten is het belangrijk dat alle objecten een relevante tag hebben. In dit project worden de volgende tags gebruikt: Coin, DeadLine, Floor, Obstacle, Player, SpawnLine. Elk genoemd naar het overeenkomstige object.
+
+### *Environment*
 
 Het environment script is verantwoordelijk voor het instantiëren van de verschillende objecten en voor het aanmaken van *Coin* en *Obstacle* objecten op een semi-willekeurige wijze.
 
@@ -129,7 +153,7 @@ Aangezien *Coins* trigger colliders hebben word hiervoor de functie `OnTriggerEn
 
 ### *Coin*
 
-Het *Coin* script bevat de floats `givenSpeed`, `randomizedSpeed`, `maxSpeed` en `minSpeed`, alsook de boolean `constantGivenSpeed`, gebaseerd op deze boolean word het `randomizedSpeed` in de `Start()` functie een vaste waarde givenSpeed of een willekeurige waarde tussen `maxSpeed` en `minSpeed` gegeven. Ook heeft het script een *Environment* object om objecten uit het *Environment* te kunnen ophalen.
+Het *Coin* script bevat de floats `givenSpeed`, `randomizedSpeed`, `maxSpeed` en `minSpeed`, alsook de boolean `constantGivenSpeed`, gebaseerd op deze boolean word het `randomizedSpeed` in de `Start()` functie een vaste waarde `givenSpeed` of een willekeurige waarde tussen `maxSpeed` en `minSpeed` gegeven. Ook heeft het script een *Environment* object om objecten uit het *Environment* te kunnen ophalen.
 
 *Coin* heeft ook een `FixedUpdate()` functie, waarin de `Move()` functie aangeroepen word als `randomizedSpeed` hoger dan 0 is, `Move()` beweegt de *Coin* in zijn forward richting aan snelheid `randomizedSpeed * Time.deltaTime`.
 
@@ -155,4 +179,10 @@ In *SampleScene* scène zal er slechts een *Environment* getoond worden waar de 
 
 Op de *ML Scene* worden er tien *Environment*s geplaatst. Wij hebben voor dit aantal geopteerd aangezien dit voor een perfecte harmonie zorgt tussen het CPU- en GPU-verbruik.
 
-Op het eerste zicht zou het niet lijken dat zo'n eenvoudig *Environment* veel zou gebruiken. Echter moet er rekening worden gehouden met: dat er per **x** aantal seconden nieuwe objecten aangemaakt en verwijderd worden, elke *Player* zijn eigen *RayPerceptionSensoren* wat zeer CPU-intensief is, etc.
+In eerste instantie zou het niet lijken dat zo'n eenvoudig *Environment* veel resources zou gebruiken. Echter moet er rekening worden gehouden met het feit dat er per **x** aantal seconden nieuwe objecten aangemaakt en verwijderd worden, elke *Player* zijn eigen *RayPerceptionSensoren* wat zeer CPU-intensief is, etc.
+
+Hierdoor worden er nog enkele optimalisaties uitgevoerd op onze Unity omgeving om dit vlekkeloos te laten gebeuren.
+
+## Unity optimalisaties
+
+fsdsfds 
