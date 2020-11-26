@@ -29,7 +29,7 @@ namespace Assets.Scripts
             {
                 body.AddForce(new Vector3(0, jumpForce, 0), ForceMode.VelocityChange);
                 jumpIsReady = false;
-                // AddReward(-0.15f);
+                AddReward(-0.15f);
             }
         }
 
