@@ -1,0 +1,30 @@
+{
+    "Player": {
+        "checkpoints": [
+            {
+                "steps": 1149991,
+                "file_path": "results\\Player-19-springengeenpuntenverliezen\\Player\\Player-1149991.onnx",
+                "reward": -0.5619459628454737,
+                "creation_time": 1606322611.8520033
+            },
+            {
+                "steps": 1153723,
+                "file_path": "results\\Player-19-springengeenpuntenverliezen\\Player\\Player-1153723.onnx",
+                "reward": -0.5822857099452189,
+                "creation_time": 1606322628.6683257
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1153723,
+            "file_path": "results\\Player-19-springengeenpuntenverliezen\\Player.onnx",
+            "reward": -0.5822857099452189,
+            "creation_time": 1606322628.6683257
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.22.0",
+        "torch_version": "1.7.0",
+        "tensorflow_version": -1
+    }
+}

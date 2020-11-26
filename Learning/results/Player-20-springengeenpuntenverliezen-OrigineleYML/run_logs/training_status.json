@@ -1,0 +1,48 @@
+{
+    "Player": {
+        "checkpoints": [
+            {
+                "steps": 3399953,
+                "file_path": "results\\Player-20-springengeenpuntenverliezen-OrigineleYML\\Player\\Player-3399953.onnx",
+                "reward": 1.4697499835165218,
+                "creation_time": 1606341419.4940243
+            },
+            {
+                "steps": 3449994,
+                "file_path": "results\\Player-20-springengeenpuntenverliezen-OrigineleYML\\Player\\Player-3449994.onnx",
+                "reward": null,
+                "creation_time": 1606341672.9064155
+            },
+            {
+                "steps": 3499960,
+                "file_path": "results\\Player-20-springengeenpuntenverliezen-OrigineleYML\\Player\\Player-3499960.onnx",
+                "reward": null,
+                "creation_time": 1606341896.660661
+            },
+            {
+                "steps": 3549999,
+                "file_path": "results\\Player-20-springengeenpuntenverliezen-OrigineleYML\\Player\\Player-3549999.onnx",
+                "reward": -0.3270000033080578,
+                "creation_time": 1606342120.415044
+            },
+            {
+                "steps": 3566909,
+                "file_path": "results\\Player-20-springengeenpuntenverliezen-OrigineleYML\\Player\\Player-3566909.onnx",
+                "reward": 0.2720000110566616,
+                "creation_time": 1606342211.7210984
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 3566909,
+            "file_path": "results\\Player-20-springengeenpuntenverliezen-OrigineleYML\\Player.onnx",
+            "reward": 0.2720000110566616,
+            "creation_time": 1606342211.7210984
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.22.0",
+        "torch_version": "1.7.0",
+        "tensorflow_version": -1
+    }
+}
