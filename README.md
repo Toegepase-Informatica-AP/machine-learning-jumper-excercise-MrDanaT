@@ -12,7 +12,7 @@ De speler staat altijd op dezelfde positie op het veld t.o.v. de vloer en ziet v
 
 ## Observaties, acties en beloningen
 
-In dit project maken wij gebruik van reinforcement learning om de ML Agents op een correcte wijze te laten leren. Dit doen wij door gebruik te maken van zowel intrinsieke- als extrinsieke beloningen. Extrinsieke beloningen zijn beloningen die wijzelf definiëren. Intrinsieke beloningen bepalen dan weer de nieuwsgierigheid van de ML Agents en hoe snel hij iets moet leren.
+In dit project maken wij gebruik van reinforcement learning om de ML Agents op een correcte wijze te laten leren. Dit doen wij door gebruik te maken van zowel intrinsieke- als extrinsieke beloningen. Extrinsieke beloningen zijn beloningen die door ons worden gedefinieerd. Intrinsieke beloningen bepalen dan weer de nieuwsgierigheid van de ML Agents en hoe snel hij iets moet leren.
 
 Zo zal *Player* telkens gestraft of beloond worden per actie die hij onderneemt. In de volgende tabel staan deze extrinsieke beloningen en straffen opgesomd, gesorteerd volgens beloning.
 
@@ -23,7 +23,7 @@ Zo zal *Player* telkens gestraft of beloond worden per actie die hij onderneemt.
 | Stilstaan per frame   | +0.001            |
 | Aanraken van een munt | +0.6              |
 
-> Een goede opmerking hierbij zou zijn dat het afstraffen voor het springen overbodig zou zijn als de agent al stilstaat en vice versa. Echter hebben wij ontdekt dat de combinatie van de twee voor veel snellere en betere resultaten kunnen zorgen. Zie paragraaf `Trainingen` voor meer informatie.
+> Een goede opmerking hierbij zou zijn dat het afstraffen voor het springen overbodig zou zijn als de agent al stilstaat en vice versa. Echter hebben wij ontdekt dat de combinatie van de twee voor veel snellere en betere resultaten kan zorgen. Zie paragraaf `Trainingen` voor meer informatie.
 
 ## Setup deel 1: creatie van objecten
 
@@ -35,29 +35,29 @@ Vooraleer we aan de effectieve ML Agents training kunnen starten, zullen er eers
 
 Het *Environment* is een parent object voor alle objecten in een enkele omgeving. Deze heeft ook het nodige gedrag om de spelomgeving foutloos te laten verlopen door continu *obstacles* en *Coins* te spawnen en te verzekeren dat er een *Player* object bestaat.
 
-Door meerdere *Environments* in een scène te zetten, kan men meerdere spelomgevingen tegelijk laten draaien. Logischerwijs zal dit ervoor zorgen dat de leercurve van de ML Agents sneller zal verlopen.
+Door meerdere *Environments* in een scène te zetten, kan men meerdere spelomgevingen tegelijk laten draaien. Logischerwijs zal dit ervoor zorgen dat het leerproces van de ML Agents sneller zal verlopen.
 
-> Opgelet: dit verhoogde leercurve is er enkel zolang het toestel waar je de training op draait krachtig genoeg zijn om al deze omgevingen tegelijkertijd te kunnen draaien. Als hier geen rekening mee gehouden wordt, zorgt dit juist voor een vertraging van het leerproces.
+> Opgelet: deze verhoogde leercurve is er enkel zolang het toestel waar je de training op draait krachtig genoeg zijn om al deze omgevingen tegelijkertijd te kunnen draaien. Als hier geen rekening mee gehouden wordt, zorgt dit juist voor een vertraging van het leerproces.
 
-Bij het *Environment* is het ook belangrijk om mee te geven welke prefabs het gebruikt om objecten te genereren, in dit geval de *Coin*, *Obstacle* en *Player* prefabs. Ook zal er een *Player* object gegenereerd worden als indien er geen aanwezig is.
+Bij het *Environment* is het ook belangrijk om mee te geven welke prefabs het gebruikt om objecten te genereren, in dit geval zijn dit de de *Coin*, *Obstacle* en *Player* prefabs. Ook zal er een *Player* object gegenereerd worden indien deze nog niet aanwezig is.
 
 ### *ScoreBoard* object
 
 ![ScoreBoard](https://i.imgur.com/DRcItwm.png)
 
-*ScoreBoard* is een 3D-text display dat de huidige rewardscore laat zien. Deze heeft dan ook de tag "ScoreBoard". 
+*ScoreBoard* is een 3D-text display dat de huidige rewardscore laat zien. Deze heeft dan ook de tag "ScoreBoard".
 
 ### *Player* object
 
 ![*Player prefab*](https://i.imgur.com/x7YRyic.png)
 
-Het *Player* object wordt voorgesteld door een simpele bean met een gezichtje (twee ogen en een mond). Dit object staat stil op het veld en heeft enkel de "jump" actie. Deze actie kan *Player* uit vrije wil nemen tijdens zijn trainingen of door de gebruiker tijdens het testen van het project. Omdat dit de enige beweging is die het object moet ondergaan, zijn de *X-* en *Y-position* waarden vastgezet op 0 in de Rigidbody, alsook de *X-*, *Y-* en *Z-rotation* waarden. Als laatste moet hier zeker het Decision Requester script op staan met "Take Actions Between Decisions" uitgevinkt.
+Het *Player* object wordt voorgesteld door een simpele bean met een gezicht (twee ogen en een mond). Dit object staat stil op het veld en heeft enkel de "jump" actie. Deze actie kan *Player* uit vrije wil nemen tijdens zijn trainingen of door de gebruiker tijdens het testen van het project. Omdat dit de enige beweging is die het object moet ondergaan, zijn de *X-* en *Y-position* waarden vastgezet op 0 in de Rigidbody, alsook de *X-*, *Y-* en *Z-rotation* waarden. Als laatste moet hier zeker het Decision Requester script op staan met "Take Actions Between Decisions" uitgevinkt.
 
-Het object heeft een collider die gebruikt wordt in interacties met *Floor*, *Coin* en *Obstacle*. Ook heeft het een "*LeftEye*" en "*RightEye*" child sphere-objecten die de ogen voorstellen. Met Ray Perception Sensors, respectievelijk als Sensor Name LeftEyeDown en RightEyeDown (deze namen moeten uniek zijn), zorgen we ervoor dat het de *Coin* en *Obstacle* objecten kan zien. De ogen zijn elks 5° van het midden weggedraaid zodat ze minder overlap hebben.
+Het object heeft een collider die gebruikt wordt in interacties met *Floor*, *Coin* en *Obstacle*. Ook heeft het "*LeftEye*" en "*RightEye*" child sphere-objecten die de ogen voorstellen. Met Ray Perception Sensors, respectievelijk als Sensor Name LeftEyeDown en RightEyeDown (deze namen moeten uniek zijn), zorgen we ervoor dat het de *Coin* en *Obstacle* objecten kan zien. De ogen zijn elks 5° van het midden weggedraaid zodat ze minder overlappen.
 
 Door het *Floor* object aan te raken, weet de agent dat het opnieuw kan springen. De agent krijgt rewardscores wanneer *Player* een *Coin* aanraakt en verliest rewardscores als *Player* een *Obstacle* aanraakt.
 
-Het is hier belangrijk dat de Behavior Name in Behavior Parameters "Player" is en overeenkomt met de behaviorname die zich in het configuratiebestand van ons NN staat. Anders zal het trainen van de agent niet lukken.
+Het is hier belangrijk dat de Behavior Name in Behavior Parameters "Player" is en overeenkomt met de behaviorname die zich in het configuratiebestand van ons Neural Network staat. Anders zal het trainen van de agent niet lukken.
 
 De Ray Perception Sensors zijn als volgt ingesteld:
 | Variabele             | Waarde         |
@@ -79,7 +79,7 @@ Deze prefab heeft de tag "Player".
 
 ![Floor prefab](https://i.imgur.com/ZMzZ1zZ.png)
 
-Het *Floor* object is een simpele vloer waar de andere objecten op "staan" en overheen gaan. Verder heeft het geen gedrag om uit te kunnen voeren, maar wel een collider die wordt gebruikt voor de interacties met *Player*.
+Het *Floor* object is een simpele vloer waar de andere objecten op "staan" en overheen bewegen. Verder heeft het geen gedrag om uit te kunnen voeren, maar wel een collider die wordt gebruikt voor de interacties met *Player*.
 
 Dit object heeft de tag "Floor".
 
@@ -87,7 +87,7 @@ Dit object heeft de tag "Floor".
 
 ![SpawnLine prefab](https://i.imgur.com/eFaWhsp.png)
 
-Het *SpawnLine* object is een lijn die het einde van de vloer markeert en wordt gebruik om de beginlocatie van objecten aan te duiden om ze daar te laten spawnen. Het heeft van zichzelf geen gedrag. Het enige waar men op moet letten is dat deze een trigger is. Zo voorkomen we dat onze gespawnde objecten hiertegen kunnen botsen. 
+Het *SpawnLine* object is een lijn die het einde van de vloer markeert en wordt gebruikt om de beginlocatie van objecten aan te duiden om ze daar te laten spawnen. Het heeft van zichzelf geen gedrag. Het enige waar men op moet letten is dat deze een trigger is. Zo voorkomen we dat onze gespawnde objecten hiertegen kunnen botsen.
 
 Dit object heeft de tag "SpawnLine".
 
@@ -125,7 +125,7 @@ Een Parent object voor de *Obstacle* objecten, gebruikt door het environment scr
 
 ![Obstacle prefab](https://i.imgur.com/9TvamAR.png)
 
-Het *Obstacle* object is een balk die bij *SpawnLine* verschijnt en in een rechte lijn naar de *DeadLine* beweegt. De collider wordt gebruikt in interacties met *Player* en *Deadline*.
+Het *Obstacle* object is een balk die bij *SpawnLine* verschijnt en in een rechte lijn richting de *DeadLine* beweegt. De collider wordt gebruikt tijdens interacties met *Player* en *Deadline*.
 
 In tegenstelling tot het *Coin* object, is dit geen trigger aangezien het botsen tegen het *Player* object in het resetten van het spel zal resulteren.
 
@@ -135,7 +135,7 @@ Deze prefab heeft de tag "Obstacle".
 
 Het gedrag van deze objecten werkt door gebruik te maken van scripts. Deze worden hieronder beschreven.
 
-In onze scripts maken wij gebruik van de `Transform.find` functionaliteit. Aangezien dit methode objecten zoekt op basis van hun tag, is het belangrijk dat alle objecten een correcte tag hebben.
+In onze scripts maken wij gebruik van de `transform.find` functionaliteit. Aangezien deze methode objecten zoekt op basis van hun tag, is het belangrijk dat alle objecten een correcte tag hebben.
 
 In dit project worden de volgende tags gebruikt: Coin, DeadLine, Floor, Obstacle, Player, SpawnLine. Elk genoemd naar het overeenkomstige object te vinden in paragraaf `Setup deel 1`.
 
@@ -145,31 +145,35 @@ Het environment script is verantwoordelijk voor het instantiëren van de verschi
 
 Dit script bevat private objectinstanties van alle objecten in het project, zodat deze makkelijk toegankelijk zijn voor andere scripts, alsook de floats `maxTime`, `minTime`, `currentTimer` en `randomTimed`.
 
-In de `Start()` functie begint `currentTimer` van waarde 0 en krijgt `randomTimed` een waarde tussen `maxTime` en `minTime`.
+In de `Start()` functie begint `currentTimer` van waarde 0 en krijgt `randomTimed` een willekeurige waarde tussen `maxTime` en `minTime` door gebruik te maken van de `SetRandomTimed()` functie.
 
 In de `OnEnable()` functie worden alle private variabelen zoals *coins* geïnstantieerd.
 
-Ook bevat dit script de functies `ClearEnvironment()` om *Coins* en *Obstacles* de verwijderen en het bord te resetten.
+Ook bevat dit script de functie `ClearEnvironment()` om *Coins* en *Obstacles* de verwijderen en het bord te resetten.
 
 De functies `SpawnCoin()` en `SpawnObstacle()` worden gebruikt om `currentTimer` te resetten en vervolgens het corresponderend object te spawnen op de locatie van het *SpawnLine* object met de correcte orientatie.
 
-Het script bevat ook een `FixedUpdate()` functie, in deze functie wordt `currentTimer` incrementeel verhoogd en wordt er een `randomValue` tussen een kleine range(3) gegenereerd. Als `randomTimed` kleiner of gelijk is aan `currentTimer`, dan kan een object spawnen. Dit gebeurt afhankelijk van de `randomValue`; bij 1 spawnt een *Coin*, bij 2 een *Obstacle* en bij 3 gebeurt er niets behalve een reset van `currentTimer`. Op deze manier is het gedrag van het environment semi-willekeurig waardoor de ML Agents geen patroon in het spawngedrag zouden kunnen herkennen.
+De functie `SpawnPlayer()` wordt gebruikt wanneer er geen *Player* object meer aanwezig is in het environment. De locatie van deze spawn is relatief tot het environment en zal altijd correct geroteerd zijn zodat de Ray Perception Sensors richting de *SpawnLine* gericht staan.
+
+Het script bevat ook een `FixedUpdate()` functie. In deze functie wordt `currentTimer` incrementeel verhoogd en wordt er een `randomValue` tussen een kleine range(3) gegenereerd. Als `randomTimed` kleiner of gelijk is aan `currentTimer`, dan kan een object spawnen. Dit gebeurt afhankelijk van de `randomValue`; bij 1 spawnt een *Coin*, bij 2 een *Obstacle* en bij 3 gebeurt er niets behalve een reset van `currentTimer`. Op deze manier is het gedrag van het environment zo goed als willekeurig waardoor de ML Agents geen patroon in het spawngedrag zouden kunnen herkennen.
 
 ### *Player*
 
 Het *Player* script bevat de float `jumpForce` die uitmaakt hoe hoog het object zal springen alsook de bool `jumpIsReady`. Ook heeft het script een Environment object om objecten uit het Environment te kunnen ophalen en zijn eigen Rigidbody object.
 
-In de `Jump()` functie wordt het speler object met snelheid `jumpForce` naar boven bewogen en zal daarna terugvallen. Hierbij wordt `jumpIsReady` false en wordt er ook een kleine hoeveelheid rewardscore afgetrokken om willekeurig springen wanneer het niet nodig is af te straffen.
+In de `Jump()` functie wordt het *Player* object met snelheid `jumpForce` naar boven bewogen en zal daarna terug naar beneden vallen. Hierbij wordt `jumpIsReady` false en wordt er ook een kleine hoeveelheid rewardscore afgetrokken om willekeurig springen wanneer het niet nodig is af te straffen.
 
-In de `FixedUpdate()` functie zal `RequestDecision()` aangeroepen worden als `jumpIsReady` true is, deze zal op basis van de machine learning agent beslissen om te springen of niet, als deze besluit om niet te springen krijgt het een zéér kleine hoeveelheid `rewardScore` om op de grond blijven wanneer er niet gesprongen hoeft te worden aan te moedigen.
+In de `FixedUpdate()` functie zal `RequestDecision()` aangeroepen worden als `jumpIsReady` true is. Deze zal op basis van de machine learning agent beslissen om te springen of niet.Als deze besluit om niet te springen krijgt de agent een zéér kleine hoeveelheid `rewardScore`. Hierdoor wordt hij aangemoedigd om op de grond blijven wanneer er niet gesprongen hoeft te worden.
 
-Wanneer een object het *Player* object aanraakt, wordt `OnCollisionEnter(Collider collision)` aangeroepen, als dit een *Obstacle* object is verliest de agent een grote hoeveelheid rewardscore en wordt het object vernietigd. Als het het *Floor* object is, wordt `jumpIsReady` opnieuw True.
+Wanneer een nieuwe episode begint zal de functie `OnEpisodeBegin()` functie aangeroepen worden. Deze functie zal er voor zorgen dat er geen *Coin* of *Obstacle* pbjecten meer in het *Environment* aanwezig zijn en dat er een *Player* object bestaat indien dit nog niet het geval is.
+
+Wanneer een object het *Player* object aanraakt, wordt `OnCollisionEnter(Collider collision)` aangeroepen. Als dit een *Obstacle* object is verliest de agent een grote hoeveelheid rewardscore en wordt het object vernietigd. Als het object het *Floor* object is, wordt `jumpIsReady` opnieuw True.
 
 Aangezien *Coins* triggers zijn, wordt hiervoor de functie `OnTriggerEnter(Collider collision)` aangeroepen. Hierbij wordt de *Coin* vernietigd en krijgt de agent een grote hoeveelheid rewardscore.
 
 ### *Coin*
 
-Het *Coin* script bevat de floats `givenSpeed`, `randomizedSpeed`, `maxSpeed` en `minSpeed`, alsook de boolean `constantGivenSpeed`. Gebaseerd op deze boolean, wordt het `randomizedSpeed` in de `Start()` functie oftewel gelijkgesteld aan de vaste waarde `givenSpeed` oftewel aan een willekeurige waarde tussen de gegeven `maxSpeed` en `minSpeed`. Ook heeft het script een *Environment* object om objecten uit het *Environment* te kunnen ophalen.
+Het *Coin* script bevat de floats `givenSpeed`, `randomizedSpeed`, `maxSpeed` en `minSpeed`, alsook de boolean `constantGivenSpeed`. Gebaseerd op deze boolean, wordt het `randomizedSpeed` in de `Start()` functie oftewel gelijkgesteld aan de vaste waarde `givenSpeed`, oftewel aan een willekeurige waarde tussen de gegeven `maxSpeed` en `minSpeed`. Ook heeft het script een *Environment* object om objecten uit het *Environment* te kunnen ophalen.
 
 *Coin* heeft ook een `FixedUpdate()` functie, waarin de `Move()` functie wordt aangeroepen. Als `randomizedSpeed` hoger dan 0 is, dan wordt de `Move()` methode uitgevoerd en beweegt de *Coin* in zijn forward richting aan snelheid `randomizedSpeed * Time.deltaTime`.
 
@@ -187,15 +191,15 @@ Voor een duidelijke afbakening te maken tussen de testomgeving van het verkregen
 
 ![*SampleScene*](https://i.imgur.com/MVnF3wY.png)
 
-In *SampleScene* scène zal er slechts een *Environment* getoond worden waar het verkregen brein van de Intelligence Agents op de (enige) *Player* gezet zal worden. Dit wordt gedaan om de aandacht zo op één specifieke *Environment* te kunnen leggen en er een makkelijke switch gemaakt kan worden tussen het leren en testen. Ook zorgt dit natuurlijk voor veel minder resource (CPU- & GPU-) verbruik.
+In de *SampleScene* scène zal er slechts één *Environment* getoond worden waar het verkregen brein van de Intelligence Agents op de (enige) *Player* gezet zal worden. Zo wordt de aandacht op één specifiek *Environment* gelegd. Op deze mannier kan er een makkelijke switch gemaakt worden tussen het leren en het testen. Ook zorgt dit natuurlijk voor veel minder resource (zowel CPU-, als GPU-) verbruik.
 
 ### *ML Scene*
 
 ![*ML Scene*](https://i.imgur.com/GK5SZg5.png)
 
-Op de *ML Scene* worden er tien *Environment*s geplaatst. Wij hebben voor dit aantal geopteerd aangezien dit voor een perfecte harmonie zorgt tussen het CPU- en GPU-verbruik.
+Op de *ML Scene* worden er tien *Environments* geplaatst. Wij hebben voor dit aantal geopteerd aangezien dit voor een perfecte harmonie zorgt tussen het CPU- en GPU-verbruik.
 
-In eerste instantie zou het niet lijken dat zo'n eenvoudig *Environment* veel resources zou gebruiken. Echter moet er rekening worden gehouden met het feit dat er per **x** aantal seconden nieuwe objecten aangemaakt en verwijderd worden, elke *Player* zijn eigen *RayPerceptionSensoren* wat zeer CPU-intensief is, etc.
+In eerste instantie zou het niet lijken dat zo'n eenvoudig *Environment* veel resources zou gebruiken. Echter moet er rekening worden gehouden met het feit dat er enorm veel tegelijk gebeurt. Voorbeelden hiervan zijn: per **x** aantal seconden worden er nieuwe objecten aangemaakt en verwijderd, elke *Player* heeft zijn eigen *RayPerceptionSensoren* wat zeer CPU-intensief is, etc.
 
 Hierdoor worden er nog enkele optimalisaties uitgevoerd op onze Unity omgeving om dit vlekkeloos te laten gebeuren.
 
@@ -212,9 +216,9 @@ Aangezien dit project zich focust op ML Agents die het spel leren spelen, is er 
 
 ## Trainingen
 
-In de parent folder van ons Unity project maken we een folder aan genaamd `Learning` waar alle resultaten van het NN in zullen komen.
+In de parent folder van ons Unity project maken we een folder aan genaamd `Learning` waar alle resultaten van het Neural Network in zullen komen.
 
-Hierin maken we als eerste een `Player-01.yml` configuratie-bestand aan waar de instellingen van ons NN in terrecht komen. Wij hebben geopteerd voor de volgende configuratie:
+Hierin maken we als eerste een `Player-01.yml` configuratie-bestand. Hierin komen de instellingen van ons Neural Network in terrecht. Wij hebben geopteerd voor de volgende configuratie:
 
 ```yml
 behaviors:
@@ -261,7 +265,7 @@ Een training kunnen we starten door `mlagents-learn Player-01.yml --run-id Playe
 
 ![Samenvatting trainingen](https://i.imgur.com/YlE2b3a.png)
 
-Na +50u aan traingen te doen en allerlei mogelijke configuratie bestanden en vormen van rewards (meermaals) te testen, komen we op het finale resultaat dat voor het beste en meest natuurlijk gedrag van de agent, dit bovenstaand configuratiebestand in combinatie met het afstraffen van punten voor het springen en belonen om stil te staan de beste combinatie is.
+Na +50u aan traingen te doen en allerlei mogelijke configuratie bestanden en vormen van rewards (meermaals) te testen, komen we op het uiteindelijke resultaat dat, voor het beste en meest natuurlijk gedrag van de agent, dit bovenstaand configuratiebestand, in combinatie met het afstraffen van punten voor het springen en belonen om stil te staan, de beste combinatie is.
 
 ![Top 3 combinaties](https://i.imgur.com/W44ACvU.png)
 
