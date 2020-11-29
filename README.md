@@ -40,12 +40,12 @@ In dit project maken wij gebruik van reinforcement learning om de ML Agents op e
 
 Zo zal _Player_ telkens gestraft of beloond worden per actie die hij onderneemt. In de volgende tabel staan deze extrinsieke beloningen en straffen opgesomd, gesorteerd volgens beloning.
 
-| Omschrijving          | Beloning (floats) |
-| --------------------- | ----------------- |
-| Aanraken van een muur | -1                |
-| Springen              | -0.15             |
-| Stilstaan per frame   | +0.001            |
-| Aanraken van een munt | +0.6              |
+| Omschrijving              | Beloning (floats) |
+| ------------------------- | ----------------- |
+| Aanraken van een obstakel | -1                |
+| Springen                  | -0.15             |
+| Stilstaan per frame       | +0.001            |
+| Aanraken van een munt     | +0.6              |
 
 > Een goede opmerking hierbij zou zijn dat het afstraffen voor het springen overbodig zou zijn als de agent al stilstaat en vice versa. Echter hebben wij ontdekt dat de combinatie van de twee voor veel snellere en betere resultaten kan zorgen. Zie paragraaf `Trainingen` voor meer informatie.
 
