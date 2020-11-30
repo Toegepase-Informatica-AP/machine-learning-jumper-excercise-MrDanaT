@@ -321,8 +321,11 @@ Een training kunnen we starten door `mlagents-learn Player-01.yml --run-id Playe
 
 ![Samenvatting trainingen](https://i.imgur.com/YlE2b3a.png)
 
-Na +50u aan traingen te doen en allerlei mogelijke configuratie bestanden en vormen van rewards (meermaals) te testen, komen we op het uiteindelijke resultaat dat, voor het beste en meest natuurlijk gedrag van de agent, dit bovenstaand configuratiebestand, in combinatie met het afstraffen van punten voor het springen en belonen om stil te staan, de beste combinatie is.
+Na +50u aan traingen te doen en allerlei mogelijke configuratie bestanden en vormen van rewards (meermaals) te testen, komen we op het uiteindelijke resultaat dat voor het beste en meest natuurlijk gedrag van de agent dit bovenstaand configuratiebestand, in combinatie met het afstraffen van punten voor het springen en belonen om stil te staan, de beste combinatie is.
 
 ![Top 3 combinaties](https://i.imgur.com/W44ACvU.png)
 
-![Overzicht van alle grafieken](https://i.imgur.com/oOUZfkR.png)
+> Uitleg:
+> Player-DEPRECATED: door in het begin een foute benaming te gebruiken voor onze run-ids, kunnen wij niet meer achterhalen welke van deze trainingen gebruik maken van welke configuraties en property instellingen.
+> Player-17 en Player-21: beidepunten wijst aan dat *Player* bij het springen punten zal verliezen en bij het stilstaan punten zal bijverdienen.
+> Player-18: stilstaangeenpunten geeft aan dat bij het stilstaan, de *Player* geen punten zal verdienen. Springen zorgt echter nog wel voor negatieve rewards. Dit zorgt er voor dat de speler gewoonweg niet meer wilde springen aangezien hij zo anders continu punten zou verliezen.
